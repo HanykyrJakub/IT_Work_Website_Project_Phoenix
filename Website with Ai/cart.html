@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Košík</title>
+    <link rel="stylesheet" href="/Website with Ai/style/STYLE_1.css">
+</head>
+<body>
+    <header>
+        <h1>Košík</h1>
+    </header>    
+
+    <div class="container" id="cart-container">
+        
+    </div>
+
+    <div class="total" id="total">
+        Celkem 0 Kč
+    </div>
+
+    <div class="checkout" onclick="checkout()">
+        Dokončit nákup
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.innerHTML = ''; 
+
+            let totalPrice = 0;
+
+            cart.forEach((item, index) => {
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    cartItem.innerHTML = `
+        <div>
+            <h3>${item.product}</h3>
+            <p>Cena za kus: ${item.price.toFixed(2)} KČ</p>
+            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+        </div>
+        <button class="remove-button" onclick="removeFromCart(${index})">Odstranit</button>`;
+    cartContainer.appendChild(cartItem);
+    totalPrice += item.price * item.quantity;
+});
+document.getElementById('total').textContent = `Celkem ${totalPrice.toFixed(2)} Kč`
+            document.getElementById('total').textContent = `Celkem: ${totalPrice.toFixed(2)}Kč`;
+        }
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+        function updateQuantity(index, quantity){
+            cart[index].quantity = parseInt(quantity);
+            localStroeage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function checkout() {
+            alert('zaplaceno');
+            localStorage.removeItem('cart');
+            window.location.href = 'index.html';
+        }
+
+        renderCart(); 
+    </script>
+</body>
+</html>
