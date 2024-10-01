@@ -1,72 +1,64 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testovací E-shop</title>
-    <link rel="stylesheet" href="/Website with Ai/style/style.css">
+    <title>test eshop</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Testovací E-shop</h1>
+        <div class="logo">
+            <img src="https://www.mcpenshop.cz/templates/MasterCard2018/images/logo.png">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Domů</a></li>
+                <li><a href="#">O nás</a></li>
+                <li><a href="#">Produkty</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
     </header>
+    
+    <main>
+        <section class="hero">
+            <h1>Vítejte v našem Eshopu</h1>
+            <p>Nakupujte kvalitní produkty za nejlepší ceny</p>
+        </section>
 
-    <div class="recommended">
-        <h4>Doporučené  produkty</h4>
-        <div class="row">
-            
+        <section class="products">
+            <h2>Naše oblíbené produkty</h2>
+            <div class="product-list">
+                <div class="product-item">
+                    <img src="https://via.placeholder.com/150" alt="Produkt 1">
+                    <h3>Produkt 1</h3>
+                </div>
+                <div class="product-item"></div>
+                    <img src="https://via.placeholder.com/150" alt="Produkt 2">
+                    <h3>Produkt 2</h3>
+                </div>
+                <div class="product-item"></div>
+                    <img src="https://via.placeholder.com/150" alt="Produkt 3">
+                    <h3>Produkt 3</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="chatbot">
+        <div id="chatbot-header">Chatbot</div>
+        <div id="chatbot-body">
+            <div id="chatbot-input"></div>
+            <input type="text" id="chatbot-input" placeholder="Zadejte dotaz...">
+            <button id="chatbot-send">Odeslat</button>
         </div>
-
     </div>
 
-    <div class="container">
-        <div class="product">
-            <img src="https://img.mcpenshop.cz/images/mcpen/produkty/32100002.jpg?vid=1&tid=30&r=D" alt="Produkt 1">
-            <h3>Produkt 1</h3>
-            <p>cena: 62.90 Kč</p>
-            <button onclick="addtocart('Produkt 1', 62.90, 'https://img.mcpenshop.cz/images/mcpen/produkty/32100002.jpg?vid=1&tid=30&r=D')">Přidat do košíku</button>
-        </div>
+    <footer>
+        <p>&copy; 2024 mcpenshop</p>
+    </footer>
 
-        <div class="product">
-            <img src="https://img.mcpenshop.cz/images/mcpen/produkty/18100130.jpg?vid=1&tid=30&r=D" alt="Produkt 2">
-            <h3>Produkt 2</h3>
-            <p>cena: 35.90 Kč</p>
-            <button onclick="addtocart('Produkt 2', 35.90, 'https://img.mcpenshop.cz/images/mcpen/produkty/18100130.jpg?vid=1&tid=30&r=D')">Přidat do košíku</button>
-        </div>
-
-        <div class="product">
-            <img src="https://img.mcpenshop.cz/images/mcpen/produkty/36900001.jpg?vid=1&tid=30&r=D" alt="Produkt 3">
-            <h3>Produkt 3</h3>
-            <p>cena: 71.90 Kč</p>
-            <button onclick="addtocart('Produkt 3', 71.90, 'https://img.mcpenshop.cz/images/mcpen/produkty/36900001.jpg?vid=1&tid=30&r=D')">Přidat do košíku</button>
-        </div>
-    </div>
-
-    <div class="cart" id="cart-icon" onclick="redirectToCart()">
-        🛒 0 <span id="cart-count">0</span>
-    </div>
-
-    <script>
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-      function addtocart(product, price, image) {
-        console.log('Přidáváme produkt:', product, 'cena', price)
-        cart.push({ product, price, image });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        console.log('Košík po přidání:', cart);
-        updateCart();
-      }
-
-      function updateCart() {
-        const cartCount = document.getElementById('cart-count');
-        console.log('Počet položek v košíku:', cart.length);
-      }
-
-      function redirectToCart() {
-        window.location.href = 'cart.html';
-      }
-
-      document.addEventListener('DOMContentLoaded', updateCart)
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
